@@ -8,11 +8,11 @@ This example project uses SBT for building Scala projects and Amazon's SAM CLI a
 for testing, packaging, and deploying AWS Lambda functions. You'll need all of the following to complete the tutorial:
 
 1. [SBT](https://www.scala-sbt.org/) • The Scala Build Tool
-1. [SAM CLI](https://aws.amazon.com/serverless/sam/) • The AWS Serverless Application Model app (a wrapper around AWS CloudFormation and the CLI)
-1. [AWS CLI](https://aws.amazon.com/cli/) • The popular CLI for accessing the AWS API
-1. [Docker](https://www.docker.com/) • Required by SAM for local testing of Lambda functions
-1. curl • The performant web client used to test the running Lambda functions
-1. An AWS account and valid credentials
+2. [SAM CLI](https://aws.amazon.com/serverless/sam/) • The AWS Serverless Application Model app (a wrapper around AWS CloudFormation and the CLI)
+3. [AWS CLI](https://aws.amazon.com/cli/) • The popular CLI for accessing the AWS API
+4. [Docker](https://www.docker.com/) • Required by SAM for local testing of Lambda functions
+5. curl • The performant web client used to test the running Lambda functions (NOT PRESENTLY USED)
+6. An AWS account and valid credentials
 
 ## Building and Running The Function Locally
 

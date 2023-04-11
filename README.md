@@ -1,9 +1,6 @@
-# aws-lambda-hello-scala
+# scala-lambda
 
-A Hello, World app for AWS Lambda in Scala. This is the complementary example project 
-for the [Zero to AWS Lambda in Scala](https://www.bks2.com/2019/05/02/hello-scala-aws-lambda/)
-blog post.
-
+A Hello, World style app for AWS Lambda in Scala. This project creates and deploys a layer. It's also intended to demonstrate using AWS's SnapStart.
 
 ## Requirements
 
@@ -21,14 +18,16 @@ for testing, packaging, and deploying AWS Lambda functions. You'll need all of t
 
 Open your terminal to the project directory and run the following to build and run the function locally:
 
-    $ sbt assembly && sam local start-api
+    $ sbt assembly && sam packageLayer
 
-The `sbt assembly` command to compile the function and package it in a "fat" JAR file could be run by itself, but since `sam local` depends on this step it's easier and clearer to combine them and then fail immediately if there is a compilation problem.
+The `sbt assembly` command compiles the function and packages it in a JAR file. It also removes some JAR files from the assembly. The `sbt packageLayer` command builds a zip file that contains the JAR files removed in the assembly and makes a Zipfile as a deployable Lambda layer.
 
-Open a separate terminal in the same directory and test out the function with `curl`:
+`sam build` will build the appropriate artifacts for SAM ... (NOTE: it won't build the scala pieces).
 
-    $ curl http://127.0.0.1:3000/hello/developer
-    Hello, developer
+To run/test locally:
 
-The `Hello, $name` response from the function appears, with the name taken from the path parameter following the `hello/` segment. 
+`sam local invoke -e event.json`
 
+To deploy to AWS (assuming the default keys are set), `sam deploy --guided` for the first deployment. Choose a name and the defaults should be acceptable.
+
+Presently, the API Gateway doesn't work but you can invoke the Lambda remotely with any text as the inbound content. This can be done in the AWS console, with the AWS cli or with a specific IDE plugin like the AWS plugin for vscode.

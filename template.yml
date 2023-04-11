@@ -12,12 +12,16 @@ Resources:
       Handler: 'RestQueryFunction::handleRequest'
       Runtime: 'java11'
       CodeUri: 'target/scala-2.13/rest-query-function-assembly-1.0.jar'
-      MemorySize: 256
+      MemorySize: 1024
       Timeout: 30
       SnapStart:
         ApplyOn: PublishedVersions
       # A Version is required for SnapStart
       AutoPublishAlias: Live
+      # See: https://aws.amazon.com/blogs/compute/optimizing-aws-lambda-function-performance-for-java/
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Layers:
         - !Ref RestQueryLayer
       Events:

@@ -16,6 +16,8 @@ Resources:
       Timeout: 30
       SnapStart:
         ApplyOn: PublishedVersions
+      # A Version is required for SnapStart
+      AutoPublishAlias: Live
       Layers:
         - !Ref RestQueryLayer
       Events:

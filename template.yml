@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: 'SAM template for RestQueryFunction'
+
+Resources:
+  RestQueryFunction:
+    Type: 'AWS::Serverless::Function'
+    Metadata:
+      SkipBuild: True
+    Properties:
+      FunctionName: 'RestQueryFunction'
+      Handler: 'RestQueryFunction::handleRequest'
+      Runtime: 'java11'
+      CodeUri: 'target/scala-2.13/rest-query-function-assembly-1.0.jar'
+      MemorySize: 256
+      Timeout: 30
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Layers:
+        - !Ref RestQueryLayer
+      Events:
+        RestQueryEvent:
+          Type: 'Api'
+          Properties:
+            Path: '/rest-query'
+            Method: 'get'
+  
+  RestQueryLayer:
+    Type: 'AWS::Serverless::LayerVersion'
+    Properties:
+      LayerName: 'RestQueryLayer'
+      ContentUri: 'layer/rest-query-layer.zip'
+      CompatibleRuntimes:
+        - 'java11'

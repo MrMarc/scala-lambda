@@ -1,0 +1,13 @@
+.aws-sam/
+.vscode/
+.metals/
+.bloop/
+.layer/
+layer/
+target/
+*metals.sbt
+*.class
+test/
+.DS_Store
+.scalafmt.conf
+samconfig.toml
